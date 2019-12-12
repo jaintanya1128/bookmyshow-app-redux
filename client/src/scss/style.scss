@@ -1,0 +1,263 @@
+@import "../scss/dependencies/variables.scss";
+
+body.base-theme {
+  font-family: $font_family;
+  background: $primary-color;
+  min-height: 100vh;
+  color: #474747;
+  -webkit-transition: background-image 0.2s ease-in-out;
+  font-size: 16px;
+}
+.base-theme {
+  header {
+    background: rgba(255, 255, 255, 1);
+    background: -moz-linear-gradient(
+      top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(246, 246, 246, 1) 47%,
+      rgba(237, 237, 237, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+      top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(246, 246, 246, 1) 47%,
+      rgba(237, 237, 237, 1) 100%
+    );
+    background: -o-linear-gradient(
+      top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(246, 246, 246, 1) 47%,
+      rgba(237, 237, 237, 1) 100%
+    );
+    background: -ms-linear-gradient(
+      top,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(246, 246, 246, 1) 47%,
+      rgba(237, 237, 237, 1) 100%
+    );
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(246, 246, 246, 1) 47%,
+      rgba(237, 237, 237, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$white', endColorstr='#ededed', GradientType=0 );
+    color: $black;
+    min-height: 80px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    -webkit-transition: box-shadow 0.5s ease;
+    transition: box-shadow 0.5s ease;
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $charcoal-three;
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  .btn-custom {
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 20px;
+    border: none !important;
+    box-shadow: none !important;
+    background: linear-gradient(
+      to right,
+      #d7e851,
+      #bbe859,
+      #9fe763,
+      #80e570,
+      #5ce27e
+    );
+  }
+}
+main {
+  > .container {
+    margin-top: 32px;
+    margin-bottom: 80px;
+    @include media-breakpoint-up(md) {
+      margin-top: 80px;
+      margin-bottom: 150px;
+    }
+  }
+}
+header {
+  .navbar-brand {
+    margin: 0;
+  }
+}
+.btn {
+  padding: 10px 25px;
+  min-width: 100%;
+
+  &.btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    &:hover,
+    &:active,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      background-color: $light-primary-color;
+      border-color: $light-primary-color;
+    }
+  }
+  &.btn-secondary {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+    &:hover,
+    &:active,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
+  }
+
+  &.link {
+    background: none !important;
+    border: none !important;
+    color: $primary-color !important;
+    padding: 0;
+    min-width: inherit;
+  }
+}
+a :not(.logo),
+.link :not(.logo) {
+  margin-left: 10px;
+  color: $primary-color;
+  text-decoration: none;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: $primary-color;
+    left: 0;
+    bottom: 0;
+    -webkit-transition: all 0.3s cubic-bezier(0.32, 0.01, 0, 1);
+    -moz-transition: all 0.3s cubic-bezier(0.32, 0.01, 0, 1);
+    -o-transition: all 0.3s cubic-bezier(0.32, 0.01, 0, 1);
+    transition: all 0.3s cubic-bezier(0.32, 0.01, 0, 1);
+  }
+  &:hover,
+  &:focus {
+    color: $primary-color;
+    text-decoration: none;
+    &::before {
+      width: 0%;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+.card-group {
+  > .card {
+    @include media-breakpoint-up(sm) {
+      flex: 1 0 30%;
+      max-width: 30%;
+      margin: 20px;
+    }
+    &:first-child {
+      @include media-breakpoint-up(sm) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .card-text {
+    max-height: 148px;
+    overflow: hidden;
+  }
+}
+.card-body {
+  display: flex;
+  flex-flow: column nowrap;
+  button {
+    margin-top: auto;
+  }
+}
+
+.btn-pill-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.btn-pill {
+  min-width: inherit;
+  margin-right: 10px;
+  padding: 5px 10px;
+  line-height: normal;
+  border-radius: 20px;
+}
+.seat-layout-wrap {
+  padding: 20px 50px;
+  border: 1px solid;
+  text-align: center;
+  width: fit-content;
+  margin: 30px auto;
+
+  .row-name {
+    min-width: 20px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .single-seat {
+    padding: 0;
+    margin: 5px;
+    border: 1px solid #736b60;
+    text-align: center;
+    display: inline-block;
+    height: 20px;
+    width: 30px;
+    font-size: 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    &:disabled {
+      background-color: $brown-grey;
+      color: $charcoal-three;
+    }
+    &.selected {
+      background-color: $green;
+    }
+  }
+
+  .screen {
+    border-top: 5px solid $charcoal-three;
+    width: 130px;
+    height: 5px;
+    margin: 20px auto 0;
+  }
+
+  .btn-book-ticket {
+    min-width: auto;
+    margin: 0 auto;
+    display: block;
+  }
+}
+.select-seat-form select {
+  display: inline-block;
+  width: 50px;
+  margin-left: 20px;
+}
+
+.error {
+  display: block;
+  width: 100%;
+  color: $red;
+  padding-top: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}

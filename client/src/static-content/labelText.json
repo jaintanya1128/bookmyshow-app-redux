@@ -1,0 +1,22 @@
+{
+  "appName": "Book Movie",
+  "searchPlaceholderText": "search for movies",
+  "releaseDate": "Release Date:",
+  "bookNow": "Book Now",
+  "language": "Language :",
+  "langEngCode": "en",
+  "langEngText": "English",
+  "langEmptyDisplayText": "--",
+  "revenue": "Revenue:",
+  "currencyCodeDolar": "$",
+  "duration": "Duration :",
+  "avgRating": "Average Rating :",
+  "totalCount": "Voting Count :",
+  "bookTicket": "Book Ticket",
+  "summary": "Summary: ",
+  "productionComp": "Production Company: ",
+  "noOfSeats": "How many Seats?",
+  "showDate": "Show Date:",
+  "showTime": "Show Time:",
+  "screenSide": "All eyes this side"
+}
