@@ -1,42 +1,68 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+import CardComponent from "../common/Card.component";
+
+import textConfig from "../static-content/staticText.json";
+import config from "../config.json";
 import history from "../history";
-import textConfig from "../static-content/labelText.json";
 
-import { FaHeart } from "react-icons/fa";
+class MovieListingComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movieList: []
+    };
+    // console.log(props);
+  }
+  componentDidMount() {
+    // console.log("Movie Listing- component");
+    document.addEventListener("searched", e => {
+      fetch(`${config.apiUrl}/api/movies/query/${e.detail}`)
+        .then(response => response.json())
+        .then(result => {
+          //console.log(result.data);
+          this.setState({ movieList: result.data.details.movies });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    });
 
-function MovieListingComponent(props) {
-  // console.log("Movie Llisting");
-  // console.log(props);
+    this.props.getAllMovies();
+  }
+  render() {
+    console.log("movie listing: render");
+    const movieList = this.props.movieList.map((movie, index) => {
+      console.log(index, movie);
+      return (
+        <CardComponent
+          key={movie.id}
+          title={movie.name}
+          imageSrc={movie.poster_path}
+          imageAtlTxt={`${textConfig.posterForTxt} ${movie.name}`}
+          subtitle={`${textConfig.releaseDate} ${movie.release_date}`}
+          desc={movie.desc}
+          lovetitle={movie.avg_rating}
+          ctaTxt={textConfig.bookNow}
+          ctaAction={() => {
+            this.props.setSelectedMovieDetail(movie);
+            history.push(`/movie/${movie.id}`);
+          }}
+        />
+      );
+    });
 
-  const selectedMovieDetail = { ...props };
-  const { id, poster_path, name, releaseDate, avg_rating, desc } = { ...props };
-
-  return (
-    <div
-      className="card"
-      onClick={() => {
-        console.log("Movie Listing: movie clicked");
-        console.log(selectedMovieDetail);
-        props.onClick(selectedMovieDetail);
-        history.push(`/movie/${id}`);
-      }}
-    >
-      <img className="card-img-top" src={poster_path} />
-      <div className="card-body">
-        <div className="card-title">{name}</div>
-        <div className="mb-2 text-muted card-subtitle">
-          {textConfig.releaseDate} {releaseDate}
-        </div>
-        <div className="mb-2 text-danger card-subtitle">
-          <FaHeart /> {avg_rating}
-        </div>
-        <div className="card-text">{desc}</div>
-        <button className="btn btn-primary">{textConfig.bookNow}</button>
+    return (
+      <div className="container">
+        <div className="card-group">{movieList}</div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+MovieListingComponent.defaultProps = {
+  movieList: []
+};
 
 MovieListingComponent.propTypes = {
   selectedMovieDetail: PropTypes.shape({
@@ -48,4 +74,5 @@ MovieListingComponent.propTypes = {
     desc: PropTypes.string
   })
 };
+
 export default MovieListingComponent;

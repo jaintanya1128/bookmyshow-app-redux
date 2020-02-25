@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+
 import { Router, Route, Switch } from "react-router-dom";
 
 import "./App.scss";
@@ -14,70 +15,25 @@ import Cart from "./Checkout/Checkout.container";
 import history from "./history";
 import MovieTemplate from "./MovieTemplate/MovieTemplate.component.jsx";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedMovieDetail: {}
-    };
-  }
-  render() {
-    return (
-      <Router history={history}>
-        <div className="App">
-          <Header />
-          <main>
-            <Switch>
-              <Route
-                path="/"
-                exact
-                render={() => (
-                  <MovieListing
-                    onClick={selectedMovie => {
-                      //console.log("state set in App.js");
-                      this.setState({ selectedMovieDetail: selectedMovie });
-                      //console.log(selectedMovie);
-                    }}
-                  />
-                )}
-              />
-              <Route
-                path="/movie/:id"
-                render={() => {
-                  //console.log("navigating to movie details from App.js");
-                  //console.log(this.state.selectedMovieDetail);
-                  return (
-                    <MovieDetails
-                      currentMovieDetails={this.state.selectedMovieDetail}
-                    />
-                  );
-                }}
-              />
-              <Route
-                path="/shows/:id"
-                render={() => (
-                  <MovieTemplate
-                    currentMovieDetails={this.state.selectedMovieDetail}
-                  />
-                )}
-              />
-              <Route
-                path="/booking/:id"
-                render={() => (
-                  <MovieTemplate
-                    currentMovieDetails={this.state.selectedMovieDetail}
-                  />
-                )}
-              />
-              <Route path="/checkout" component={Cart} />
-              <Route path="/thanks" component={Thanks} />
-            </Switch>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    );
-  }
+function App() {
+  return (
+    <Router history={history}>
+      <div className="App">
+        <Header />
+        <main>
+          <Switch>
+            <Route path="/" exact component={MovieListing} />
+            <Route path="/movie/:id" component={MovieDetails} />
+            <Route path="/shows/:id" component={MovieTemplate} />
+            <Route path="/booking/:id" component={MovieTemplate} />
+            <Route path="/checkout" component={Cart} />
+            <Route path="/thanks" component={Thanks} />
+          </Switch>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
 }
 
 export default App;

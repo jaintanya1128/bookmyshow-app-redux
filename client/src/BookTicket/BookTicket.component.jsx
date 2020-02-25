@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import textConfig from "../static-content/labelText.json";
+import textConfig from "../static-content/staticText.json";
 import messages from "../static-content/errorMessage.json";
 
 function BookTicket(props) {

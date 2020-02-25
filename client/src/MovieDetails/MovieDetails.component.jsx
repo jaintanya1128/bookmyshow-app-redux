@@ -1,6 +1,6 @@
 import React from "react";
 import PropType from "prop-types";
-import textConfig from "../static-content/labelText.json";
+import textConfig from "../static-content/staticText.json";
 
 import { FaHeart, FaClock } from "react-icons/fa";
 

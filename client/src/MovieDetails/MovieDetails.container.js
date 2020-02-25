@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import config from "../config.json";
 import history from "../history";
@@ -8,6 +9,9 @@ import MovieDetailsComponent from "./MovieDetails.component.jsx";
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
+    console.log("movie details: constructor");
+    console.log(props);
+    console.log();
     this.state = {
       movieDetails: props.currentMovieDetails
     };
@@ -37,6 +41,9 @@ class MovieDetails extends Component {
         console.log(err.message);
       });
   }
+  componentDidUpdate() {
+    console.log(this.props);
+  }
   timeConvert(time) {
     const hours = time / 60;
     const rhours = Math.floor(hours);
@@ -53,22 +60,23 @@ class MovieDetails extends Component {
     //console.log("movie details: render");
 
     return (
-      <MovieDetailsComponent
-        id={this.state.movieDetails.id}
-        name={this.state.movieDetails.name}
-        tagline={this.state.movieDetails.tagline}
-        lang={this.state.movieDetails.lang}
-        poster_path={this.state.movieDetails.poster_path}
-        releaseDate={this.state.movieDetails.release_date}
-        desc={this.state.movieDetails.desc}
-        avgRating={this.state.movieDetails.avg_rating}
-        votingCount={this.state.movieDetails.voting_count}
-        category={this.state.movieDetails.category}
-        runtime={this.timeConvert(this.state.movieDetails.runtime)}
-        revenue={this.state.movieDetails.revenue}
-        productionComp={this.state.movieDetails.production_companies}
-        onClick={this.bookTicketClickHandler}
-      />
+      <div></div>
+      // <MovieDetailsComponent
+      //   id={this.state.movieDetails.id}
+      //   name={this.state.movieDetails.name}
+      //   tagline={this.state.movieDetails.tagline}
+      //   lang={this.state.movieDetails.lang}
+      //   poster_path={this.state.movieDetails.poster_path}
+      //   releaseDate={this.state.movieDetails.release_date}
+      //   desc={this.state.movieDetails.desc}
+      //   avgRating={this.state.movieDetails.avg_rating}
+      //   votingCount={this.state.movieDetails.voting_count}
+      //   category={this.state.movieDetails.category}
+      //   runtime={this.timeConvert(this.state.movieDetails.runtime)}
+      //   revenue={this.state.movieDetails.revenue}
+      //   productionComp={this.state.movieDetails.production_companies}
+      //   onClick={this.bookTicketClickHandler}
+      // />
     );
   }
 }
@@ -87,4 +95,15 @@ MovieDetails.propTypes = {
   })
 };
 
-export default MovieDetails;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    currentMovieDetails: state.selectedMovieDetails
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(mapStateToProps, null)(MovieDetails);

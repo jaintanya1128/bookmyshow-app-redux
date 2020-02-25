@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./header.scss";
 
 import history from "../history";
-import textConfig from "../static-content/labelText.json";
+import textConfig from "../static-content/staticText.json";
 
 import logo from "../logo.svg";
 
@@ -29,14 +29,14 @@ class Header extends Component {
           <div className="row justify-content-space-between">
             <div className="p-0 col-sm-3 col-md-2 col-lg-1">
               <div className="navbar px-sm-0">
-                <div href="/" className="navbar-brand p-0">
+                <a href="/" className="navbar-brand p-0">
                   <img
                     alt=""
                     src={logo}
                     height="60"
                     className="logo d-inline-block align-top"
                   />
-                </div>
+                </a>
               </div>
             </div>
             <div className="p-0 col-sm-3 ">
